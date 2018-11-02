@@ -38,12 +38,10 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        try {
-            $this->authorize('show', $user);
-            return view('users.show', compact('user'));
-        } catch (AuthorizationException $exception) {
-            return abort(403, $exception->getMessage());
-        }
+        $statuses = $user->statuses()
+                         ->orderBy('created_at', 'desc')
+                         ->paginate(30);
+        return view('users.show', compact('user','statuses'));
     }
 
     public function store(Request $request)
