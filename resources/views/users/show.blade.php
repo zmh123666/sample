@@ -19,7 +19,7 @@
                         @include('statuses._status')
                     @endforeach
                 </ol>
-                { !! $statuses->render() !! }
+                 {!! $statuses->render() !!}
             @endif
         </div>
     </div>
